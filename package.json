@@ -1,6 +1,6 @@
 {
   "name": "movielens",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Promise based Node API for the movielens unpublished API",
   "main": "dist/index.js",
   "repository": "git@github.com:longseespace/movielens.git",
