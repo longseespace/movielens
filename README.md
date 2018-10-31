@@ -1,4 +1,4 @@
-# movielens
+# movielens [![Build Status](https://travis-ci.com/longseespace/movielens.svg?branch=master)](https://travis-ci.com/longseespace/movielens)
 Promise based Node API for the movielens unpublished API.
 
 ## Installing
