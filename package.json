@@ -4,7 +4,7 @@
   "description": "Promise based Node API for the movielens unpublished API",
   "main": "dist/index.js",
   "repository": "git@github.com:longseespace/movielens.git",
-  "author": "Long Nguyen <long@nomadreact.com>",
+  "author": "Long Nguyen <long@podzim.co>",
   "license": "MIT",
   "scripts": {
     "clean": "rimraf dist",
@@ -14,7 +14,7 @@
     "lint:fix": "eslint src --fix"
   },
   "dependencies": {
-    "axios": "0.15.3"
+    "axios": "^0.18.0"
   },
   "devDependencies": {
     "babel-cli": "6.22.2",
