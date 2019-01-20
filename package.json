@@ -12,7 +12,7 @@
     "prepublish": "npm run build",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
-    "sanity_test": "node tests/index.js",
+    "sanity_test": "node tests/sanity.js",
     "jest": "jest",
     "test": "jest && yarn sanity_test"
   },
