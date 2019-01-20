@@ -6,13 +6,30 @@ Object.defineProperty(exports, "__esModule", {
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _axios = require('axios');
+exports.login = login;
+exports.get = get;
+exports.post = post;
+exports.del = del;
+exports.getMe = getMe;
+exports.getGenres = getGenres;
+exports.getMyTags = getMyTags;
+exports.explore = explore;
+exports.topPicks = topPicks;
+exports.recentReleases = recentReleases;
+exports.favoritesYear = favoritesYear;
+exports.newAdditions = newAdditions;
+exports.getMyRatings = getMyRatings;
+exports.getMyWishlist = getMyWishlist;
+exports.getMyHiddenMovies = getMyHiddenMovies;
+exports.getMyStats = getMyStats;
+exports.rate = rate;
+exports.addToWishlist = addToWishlist;
+exports.removeFromWishlist = removeFromWishlist;
+exports.hide = hide;
+exports.unhide = unhide;
+var axios = require('axios');
 
-var _axios2 = _interopRequireDefault(_axios);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var api = _axios2.default.create({
+var api = axios.create({
   baseURL: 'https://movielens.org/api/',
   timeout: 30000, // 30seconds
   headers: {

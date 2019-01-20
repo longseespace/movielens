@@ -1,4 +1,4 @@
-import axios from 'axios';
+const axios = require('axios');
 
 const api = axios.create({
   baseURL: 'https://movielens.org/api/',
@@ -18,14 +18,14 @@ const api = axios.create({
   },
 });
 
-function login(userName, password) {
+export function login(userName, password) {
   const headers = { Referer: 'https://movielens.org/login' };
   return api
     .post('sessions', { userName, password }, headers)
     .then(response => response.headers['set-cookie'][0]);
 }
 
-function get(cookie, resource, params) {
+export function get(cookie, resource, params) {
   const headers = { cookie };
   return api.get(resource, {
     headers,
@@ -33,7 +33,7 @@ function get(cookie, resource, params) {
   }).then(response => response.data);
 }
 
-function post(cookie, resource, data) {
+export function post(cookie, resource, data) {
   const headers = { cookie };
   return api.post(resource, {
     headers,
@@ -41,30 +41,30 @@ function post(cookie, resource, data) {
   }).then(response => response.data);
 }
 
-function del(cookie, resource) {
+export function del(cookie, resource) {
   const headers = { cookie };
   return api.del(resource, {
     headers,
   }).then(response => response.data);
 }
 
-function getMe(cookie) {
+export function getMe(cookie) {
   return get(cookie, 'users/me');
 }
 
-function getGenres(cookie) {
+export function getGenres(cookie) {
   return get(cookie, 'movies/genres');
 }
 
-function getMyTags(cookie) {
+export function getMyTags(cookie) {
   return get(cookie, 'users/me/tags');
 }
 
-function explore(cookie, params) {
+export function explore(cookie, params) {
   return get(cookie, 'movies/explore', params);
 }
 
-function topPicks(cookie, params) {
+export function topPicks(cookie, params) {
   const newParams = {
     ...params,
     hasRated: 'no',
@@ -73,7 +73,7 @@ function topPicks(cookie, params) {
   return explore(cookie, newParams);
 }
 
-function recentReleases(cookie, params) {
+export function recentReleases(cookie, params) {
   const newParams = {
     sortBy: 'releaseDate',
     ...params,
@@ -84,7 +84,7 @@ function recentReleases(cookie, params) {
   return explore(cookie, newParams);
 }
 
-function favoritesYear(cookie, params) {
+export function favoritesYear(cookie, params) {
   const newParams = {
     sortBy: 'avgRating',
     ...params,
@@ -96,7 +96,7 @@ function favoritesYear(cookie, params) {
   return explore(cookie, newParams);
 }
 
-function newAdditions(cookie, params) {
+export function newAdditions(cookie, params) {
   const newParams = {
     sortBy: 'dateAdded',
     ...params,
@@ -104,7 +104,7 @@ function newAdditions(cookie, params) {
   return explore(cookie, newParams);
 }
 
-function getMyRatings(cookie, params) {
+export function getMyRatings(cookie, params) {
   const newParams = {
     sortBy: 'userRatedDate',
     ...params,
@@ -113,7 +113,7 @@ function getMyRatings(cookie, params) {
   return explore(cookie, newParams);
 }
 
-function getMyWishlist(cookie, params) {
+export function getMyWishlist(cookie, params) {
   const newParams = {
     sortBy: 'userListedDate',
     ...params,
@@ -122,7 +122,7 @@ function getMyWishlist(cookie, params) {
   return explore(cookie, newParams);
 }
 
-function getMyHiddenMovies(cookie, params) {
+export function getMyHiddenMovies(cookie, params) {
   const newParams = {
     ...params,
     hasHidden: 'yes',
@@ -130,32 +130,32 @@ function getMyHiddenMovies(cookie, params) {
   return explore(cookie, newParams);
 }
 
-function getMyStats(cookie) {
+export function getMyStats(cookie) {
   return get(cookie, 'users/me/ratings/stats');
 }
 
-function rate(cookie, movieId, rating) {
+export function rate(cookie, movieId, rating) {
   return post(cookie, 'users/me/ratings', {
     movieId,
     rating,
   });
 }
 
-function addToWishlist(cookie, movieId) {
+export function addToWishlist(cookie, movieId) {
   return post(cookie, 'users/me/wishlist', {
     movieId,
   });
 }
 
-function removeFromWishlist(cookie, movieId) {
+export function removeFromWishlist(cookie, movieId) {
   return del(cookie, `users/me/wishlist/${movieId}`);
 }
 
-function hide(cookie, movieId) {
+export function hide(cookie, movieId) {
   return rate(cookie, movieId, -1);
 }
 
-function unhide(cookie, movieId) {
+export function unhide(cookie, movieId) {
   return del(cookie, `users/me/ratings/${movieId}`);
 }
 

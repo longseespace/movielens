@@ -12,8 +12,7 @@
     "prepublish": "npm run build",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
-    "test": "jest",
-    "test:watch": "jest --watch"
+    "test": "node tests/index.js"
   },
   "dependencies": {
     "axios": "^0.18.0"
@@ -28,15 +27,13 @@
     "eslint-plugin-import": "1.12.0",
     "eslint-plugin-jsx-a11y": "1.5.5",
     "eslint-plugin-react": "5.2.2",
-    "jest": "^23.6.0",
     "rimraf": "2.5.4"
   },
   "jest": {
     "roots": [
-      "./src",
       "./tests"
     ],
-    "collectCoverage": true,
+    "collectCoverage": false,
     "coverageDirectory": "coverage",
     "moduleFileExtensions": [
       "js",
