@@ -1,52 +1,51 @@
 import axios from 'axios';
 
 const api = axios.create({
-  'baseURL': 'https://movielens.org/api/',
-  'timeout': 30000, // 30seconds
-  'headers': {
-    'Accept': 'application/json, text/plain, */*',
+  baseURL: 'https://movielens.org/api/',
+  timeout: 30000, // 30seconds
+  headers: {
+    Accept: 'application/json, text/plain, */*',
     'Accept-Encoding': 'gzip, deflate',
     'Accept-Language': 'en-US,en;q=0.5',
     'Cache-Control': 'no-cache',
-    'Connection': 'keep-alive',
+    Connection: 'keep-alive',
     'Content-Type': 'application/json;charset=utf-8',
-    'DNT': '1',
-    'Host': 'movielens.org',
-    'Pragma': 'no-cache',
-    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:42.0) Gecko/20100101 Firefox/42.0', //eslint-disable-line
+    DNT: '1',
+    Host: 'movielens.org',
+    Pragma: 'no-cache',
+    'User-Agent':
+      'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:42.0) Gecko/20100101 Firefox/42.0', //eslint-disable-line
   },
 });
 
-async function login(userName, password) {
+function login(userName, password) {
   const headers = { Referer: 'https://movielens.org/login' };
-  const response = await api.post('sessions', { userName, password }, headers);
-  return response.headers['set-cookie'][0];
+  return api
+    .post('sessions', { userName, password }, headers)
+    .then(response => response.headers['set-cookie'][0]);
 }
 
-async function get(cookie, resource, params) {
+function get(cookie, resource, params) {
   const headers = { cookie };
-  const response = await api.get(resource, {
+  return api.get(resource, {
     headers,
     params,
-  });
-  return response.data;
+  }).then(response => response.data);
 }
 
-async function post(cookie, resource, data) {
+function post(cookie, resource, data) {
   const headers = { cookie };
-  const response = await api.post(resource, {
+  return api.post(resource, {
     headers,
     data,
-  });
-  return response.data;
+  }).then(response => response.data);
 }
 
-async function del(cookie, resource) {
+function del(cookie, resource) {
   const headers = { cookie };
-  const response = await api.del(resource, {
+  return api.del(resource, {
     headers,
-  });
-  return response.data;
+  }).then(response => response.data);
 }
 
 function getMe(cookie) {

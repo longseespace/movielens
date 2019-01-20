@@ -14,10 +14,10 @@ $ npm install --save movielens
 ## Methods
 
 ### login(email, password)
-Logs you into your account and returns a Promise containing your cookie (yeah yeah I know, but that the only way movielens authorize your requests).
+Logs you into your account and returns a Promise containing your cookie (yeah yeah I know, but that the only way movielens authorizes your requests).
 
 ```javascript
-var movielens = require('movielens');
+const movielens = require('movielens');
 
 movielens.login('your@email.com', 'password')
   .then(function(cookie) {
@@ -38,7 +38,7 @@ Gets the list of move genres and the top(?) tags in those genres.
 Gets the tags you have made.
 
 ```javascript
-var movielens = require('movielens');
+const movielens = require('movielens');
 
 movielens.getMe(cookie)
   .then(function(data) {
@@ -53,7 +53,7 @@ movielens.getMe(cookie)
 Rate a movie.
 
 ```javascript
-var movielens = require('movielens');
+const movielens = require('movielens');
 
 // give "The Shawshank Redemption" 5 stars
 movielens.rate(cookie, 318, 5)
@@ -81,7 +81,7 @@ Remove a movie from your wishlist.
 `explore()` is the query engine to search for movies.
 
 ```javascript
-var movielens = require('movielens');
+const movielens = require('movielens');
 
 // Get movies acted by 'tom hardy' which I've rated
 // 6 results found
