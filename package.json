@@ -12,8 +12,9 @@
     "prepublish": "npm run build",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
-    "test": "jest",
-    "test:watch": "jest --watch"
+    "sanity_test": "node tests/sanity.js",
+    "jest": "jest",
+    "test": "jest && yarn sanity_test"
   },
   "dependencies": {
     "axios": "^0.18.0"
@@ -33,10 +34,10 @@
   },
   "jest": {
     "roots": [
-      "./src",
       "./tests"
     ],
-    "collectCoverage": true,
+    "testEnvironment": "node",
+    "collectCoverage": false,
     "coverageDirectory": "coverage",
     "moduleFileExtensions": [
       "js",
