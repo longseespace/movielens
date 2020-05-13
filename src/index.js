@@ -35,9 +35,8 @@ export function get(cookie, resource, params) {
 
 export function post(cookie, resource, data) {
   const headers = { cookie };
-  return api.post(resource, {
-    headers,
-    data,
+  return api.post(resource, data, {
+    headers: headers
   }).then(response => response.data);
 }
 
@@ -134,8 +133,11 @@ export function getMyStats(cookie) {
   return get(cookie, 'users/me/ratings/stats');
 }
 
-export function rate(cookie, movieId, rating) {
+export function rate(cookie, movieId, rating, predictedRating) {
+  var previousRating = null;
   return post(cookie, 'users/me/ratings', {
+    predictedRating,
+    previousRating,
     movieId,
     rating,
   });
